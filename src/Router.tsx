@@ -8,7 +8,7 @@ const Router: FC = () => {
       <Routes>
         <Route index={true} element={null} />
 
-        <Route path="/questions" element={<QuestionsPage />}>
+        <Route path="questions" element={<QuestionsPage />}>
           <Route path=":questionId" element={<QuestionsPage />} />
         </Route>
 
