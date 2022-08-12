@@ -1,20 +1,29 @@
-import avatar from "images/avatar.png";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
+import { getRandomUser } from "services";
+import { UserType } from "services/service-types";
 
 const UserInfo: FC = () => {
-  return (
-    <section className="flex items-center shrink-0 gap-4 cursor-pointer">
+  const [userInfo, setUserInfo] = useState<UserType>();
+
+  useEffect(() => {
+    getRandomUser().then(setUserInfo);
+  }, []);
+
+  return userInfo ? (
+    <section className="flex items-center shrink-0 gap-4">
       <img
-        src={avatar}
+        loading="lazy"
+        src={userInfo.avatar}
         alt="avatar"
         className="rounded-full w-11 h-11 border"
       />
 
-      <div>الناز شاکردوست</div>
-
+      <div>{userInfo.username}</div>
       <MdArrowDropDown size={32} className="text-gray-400" />
     </section>
+  ) : (
+    <div>...</div>
   );
 };
 

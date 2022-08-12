@@ -1,5 +1,7 @@
+import { FormEventHandler, useState } from "react";
 import { FC } from "react";
 import { MdClose } from "react-icons/md";
+import { postQuestion } from "services";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import {
   onQuestionModalClose,
@@ -10,7 +12,21 @@ const NewQuestionModal: FC = () => {
   const { isOpen } = useAppSelector(selectQuestionModal);
   const dispatch = useAppDispatch();
 
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
   const onClose = () => dispatch(onQuestionModalClose());
+  const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    postQuestion({
+      content,
+      title,
+      id: Math.floor(Math.random() * 50 + 11),
+      createdAt: new Date().toISOString(),
+      userId: 1
+    });
+    onClose();
+  };
 
   if (!isOpen) return null;
   return (
@@ -27,16 +43,15 @@ const NewQuestionModal: FC = () => {
           />
         </header>
 
-        <form
-          onSubmit={(event) => event.preventDefault()}
-          className="flex flex-col p-8 gap-8"
-        >
+        <form onSubmit={onSubmit} className="flex flex-col p-8 gap-8">
           <label htmlFor="" className="flex flex-col gap-2">
             موضوع
             <input
               placeholder="مشکل در اجرای کد"
               type="text"
               className="border rounded-lg px-4 py-2"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
             />
           </label>
 
@@ -45,6 +60,8 @@ const NewQuestionModal: FC = () => {
             <textarea
               placeholder="مشکل در اجرای کد"
               className="h-48 resize-none border rounded-lg p-4"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
             />
           </label>
 
@@ -58,7 +75,7 @@ const NewQuestionModal: FC = () => {
 
             <button
               className="bg-green-600 text-white hover:bg-green-500 w-32 justify-center"
-              onClick={onClose}
+              type="submit"
             >
               ایجاد سؤال
             </button>

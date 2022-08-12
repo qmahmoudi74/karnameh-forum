@@ -8,8 +8,10 @@ const Layout: FC = () => {
     <>
       <Header />
       <NewQuestionModal />
-      <main className="px-24 container mx-auto py-12">
-        <Outlet />
+      <main className="px-24 py-12">
+        <div className="container mx-auto">
+          <Outlet />
+        </div>
       </main>
     </>
   );

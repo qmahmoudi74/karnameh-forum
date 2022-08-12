@@ -1,74 +1,180 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "avatar": "http://localhost:3000/images/1.jpeg",
+      "username": "کاظم زارع"
+    },
+    {
+      "id": 2,
+      "avatar": "http://localhost:3000/images/2.jpeg",
+      "username": "راضیه احمدزاده"
+    },
+    {
+      "id": 3,
+      "avatar": "http://localhost:3000/images/3.jpeg",
+      "username": "شهرام راد"
+    },
+    {
+      "id": 4,
+      "avatar": "http://localhost:3000/images/4.jpeg",
+      "username": "شادی گودرزی"
+    },
+    {
+      "id": 5,
+      "avatar": "http://localhost:3000/images/5.jpeg",
+      "username": "سمیرا مفیدی"
+    }
+  ],
   "questions": [
     {
-      "user": {
-        "userId": 1,
-        "avatarSrc": "http://localhost:3000/images/150.jpeg"
-      },
-      "questionId": 1,
-      "title": "مشکل در سیستم Authentication",
-      "content": "سلام من میخوام یه authentication ساده تو react بسازم اما این error رو بهم میده. نمیدونم مشکل از کجاست. عکس خروجی console رو هم گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
+      "id": 1,
+      "title": "معرفی کتابخانه های js",
+      "content": "میشه کتابخانه های پرکاربرد برای js رو معرفی کنید؟ یا حتی یه مرجع برای معرفی اون ها",
       "createdAt": "2022-08-12T10:29:15.056Z",
-      "numberOfAnswers": 0
+      "userId": 1
     },
     {
-      "user": {
-        "userId": 2,
-        "avatarSrc": "http://localhost:3000/images/150 (1).jpeg"
-      },
-      "questionId": 2,
-      "title": "مشکل در ریداکس",
-      "content": "سلام من میخوام یه authentication ساده تو react بسازم اما این error رو بهم میده. نمیدونم مشکل از کجاست. عکس خروجی console رو هم گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
-      "createdAt": "2022-10-12T11:29:15.056Z",
-      "numberOfAnswers": 0
+      "id": 2,
+      "title": "درخواست قطعه کوچکی از کد جاوااسکریپت",
+      "content": "با سلام و درود خدمت همه عزیزان. بنده اخیرا دارم قالبی میزنم که همه چیش اوکیه اما تو یه قسمتیش نیاز دارم که یکم با جاوا اسکریپت کار کنم ولی بلد نیستم. میخواستم بدونم کسی هست بتونه یه اسلایدر واس این قسمت درست کنه ؟ طوری که کنارش دوتا دکمه بوجود بیاد و بتونه اسکرول رو در محور x انجام بده.",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "userId": 1
     },
     {
-      "user": {
-        "userId": 3,
-        "avatarSrc": "http://localhost:3000/images/150 (2).jpeg"
-      },
-      "questionId": 3,
-      "title": "خطای 403 در فایربیس",
-      "content": "سلام من میخوام یه authentication ساده تو react بسازم اما این error رو بهم میده. نمیدونم مشکل از کجاست. عکس خروجی console رو هم گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
-      "createdAt": "2022-11-12T11:50:15.056Z",
-      "numberOfAnswers": 0
+      "id": 3,
+      "title": "تقویم شمسی ثبت رویداد",
+      "content": "با سلام من میخوام در پروژم ی تقویم شمسی داشته باشم که بتونم در روزهای مختلف یکسری رویداد ثبت کنم. لطفا راهنماییم کنید.",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "userId": 2
     },
     {
-      "user": {
-        "userId": 4,
-        "avatarSrc": "http://localhost:3000/images/150 (3).jpeg"
-      },
-      "questionId": 4,
-      "title": "چرا این قسمت درست کار نمیکنه؟",
-      "content": "سلام من میخوام یه authentication ساده تو react بسازم اما این error رو بهم میده. نمیدونم مشکل از کجاست. عکس خروجی console رو هم گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
-      "createdAt": "2022-08-12T12:29:15.056Z",
-      "numberOfAnswers": 0
+      "id": 4,
+      "title": "چگونه یک متغیر را از جاوا اسکریپت به داخل HTML پاس بدهیم؟",
+      "content": "با سلام و عرض خسته نباشید خدمت تمامی اساتید. من میخوام متغیر بنام parentID را از جاوا اسکریپت به داخل یک حلقه foreach داخل html پاس بدهیم البته داخل شکل هم توضیح دادم. از راهنماییتون ممنونم",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "userId": 3
     },
     {
-      "user": {
-        "userId": 5,
-        "avatarSrc": "http://localhost:3000/images/150 (4).jpeg"
-      },
-      "questionId": 5,
-      "title": "مشکل در پنل Google Analytics",
-      "content": "سلام من میخوام یه authentication ساده تو react بسازم اما این error رو بهم میده. نمیدونم مشکل از کجاست. عکس خروجی console رو هم گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
-      "createdAt": "2022-09-12T10:29:15.056Z",
-      "numberOfAnswers": 0
+      "id": 5,
+      "title": "نحوه درج پاراگراف سمت راست عکس",
+      "content": "سلام مطابق اسکرین شات زیر میخام سمت راست عکس مادربرد توضیحی بزارم text-align میزارم راست کلا عکس میره راست چطوری درست کنم؟",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "userId": 4
+    },
+    {
+      "content": "چرا من نمیتونم با rust برنامه نویسی کنم یکی راهنماییم کنه!",
+      "title": "مشکل در اجرای کد های rust",
+      "id": 0.30593273057831727,
+      "createdAt": "2022-08-12T16:22:49.479Z",
+      "userId": 1
+    },
+    {
+      "content": "جابه جا",
+      "title": "من نمیخوام",
+      "id": 30,
+      "createdAt": "2022-08-12T16:26:17.479Z",
+      "userId": 1
     }
   ],
   "answers": [
     {
-      "user": {
-        "userId": 1,
-        "avatarSrc": "http://localhost:3000/images/150.jpeg"
-      },
-      "questionId": 1,
-      "answerId": 1,
-      "title": "جوابت اینجاست!",
-      "content": "من واقعا نمیدونم چجوری تونستی به همچین مشکلی بخوری ولی به نظرم با سرچ کارت راه میافته",
+      "id": 1,
+      "title": "",
+      "content": "",
       "createdAt": "2022-08-12T10:29:15.056Z",
-      "numberOfLikes": 0,
-      "numberOfDislikes": 0
+      "questionId": 1,
+      "userId": 3
+    },
+    {
+      "id": 3,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 1,
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 2,
+      "userId": 5
+    },
+    {
+      "id": 5,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 2,
+      "userId": 4
+    },
+    {
+      "id": 6,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 2,
+      "userId": 4
+    },
+    {
+      "id": 7,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 3,
+      "userId": 2
+    },
+    {
+      "id": 8,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 3,
+      "userId": 1
+    },
+    {
+      "id": 10,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 4,
+      "userId": 5
+    },
+    {
+      "id": 11,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 4,
+      "userId": 3
+    },
+    {
+      "id": 13,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 5,
+      "userId": 1
+    },
+    {
+      "id": 14,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 5,
+      "userId": 2
+    },
+    {
+      "id": 15,
+      "title": "",
+      "content": "",
+      "createdAt": "2022-08-12T10:29:15.056Z",
+      "questionId": 5,
+      "userId": 3
     }
-  ]
+  ],
+  "likes": [],
+  "dislikes": []
 }

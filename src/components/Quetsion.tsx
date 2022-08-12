@@ -1,15 +1,15 @@
 import { FC } from "react";
 import { MdOutlineComment } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { QuestionType } from "types";
+import { QuestionResponse } from "services/service-types";
 
 interface Props {
-  question: QuestionType;
+  question: QuestionResponse;
   hasDetailsButton?: boolean;
 }
 
 const Question: FC<Props> = ({
-  question: { content, createdAt, numberOfAnswers, questionId, title, user },
+  question: { id, content, createdAt, title, user, answers },
   hasDetailsButton = true
 }) => {
   const datetime = new Date(createdAt);
@@ -23,10 +23,17 @@ const Question: FC<Props> = ({
   const month = datetime.toLocaleString("fa", { month: "2-digit" });
   const year = datetime.toLocaleString("fa", { year: "numeric" });
 
+  const numberOfAnswers = answers.length;
+
   return (
     <section className="shadow rounded-xl">
       <header className="h-12 shadow px-4 py-1 bg-white rounded-xl flex gap-4 items-center">
-        <img src={user.avatarSrc} alt="avatar" className="w-8 h-8 rounded-lg" />
+        <img
+          loading="lazy"
+          src={user.avatar}
+          alt="avatar"
+          className="w-8 h-8 rounded-lg"
+        />
         <h3 className="text-lg">{title}</h3>
         <time className="mr-auto text-xs">{`ساعت: ${time} | تاریخ: ${year}/${month}/${day}`}</time>
 
@@ -41,7 +48,7 @@ const Question: FC<Props> = ({
 
         <div className="mr-auto w-max">
           {hasDetailsButton ? (
-            <Link to={`/questions/${questionId}`}>
+            <Link to={`/questions/${id}`}>
               <button className="border border-green-600 text-green-600">
                 مشاهده جزئیات
               </button>
