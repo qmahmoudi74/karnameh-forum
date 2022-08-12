@@ -15,9 +15,16 @@ export interface QuestionType {
 export interface AnswerType {
   id: number;
   questionId: number;
-  title: string;
+  userId: number;
   content: string;
   createdAt: string;
+}
+
+interface RateType {
+  id: number;
+  answerId: number;
+  userId: number;
+  type: "like" | "dislike";
 }
 
 export interface QuestionResponse extends QuestionType {
@@ -25,13 +32,18 @@ export interface QuestionResponse extends QuestionType {
   user: UserType;
 }
 
-export interface AnswersResponse extends AnswerType {
+export interface AnswerResponse extends AnswerType {
   question: QuestionType;
   user: UserType;
+  rates: RateType[];
 }
 
 export interface GetAnswersListRequest {
   questionId: number;
+}
+
+export interface GetAnswerRequest {
+  answerId: number;
 }
 
 export interface GetQuestionRequest extends GetAnswersListRequest {}

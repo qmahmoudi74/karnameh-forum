@@ -1,7 +1,7 @@
 import Layout from "layout";
+import AnswersPage from "pages/AnswersPage";
 import HomePage from "pages/HomePage";
 import NotFoundPage from "pages/NotFoundPage";
-import QuestionIdPage from "pages/QuestionIdPage";
 import QuestionsPage from "pages/QuestionsPage";
 import { FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -14,7 +14,7 @@ const Router: FC = () => {
 
         <Route element={<Layout />}>
           <Route path="/questions" element={<QuestionsPage />} />
-          <Route path="/questions/:questionId" element={<QuestionIdPage />} />
+          <Route path="/questions/:questionId" element={<AnswersPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

@@ -1,5 +1,4 @@
-import { FormEventHandler, useState } from "react";
-import { FC } from "react";
+import { FC, FormEventHandler, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { postQuestion } from "services";
 import { useAppDispatch, useAppSelector } from "store/hooks";
@@ -25,6 +24,8 @@ const NewQuestionModal: FC = () => {
       createdAt: new Date().toISOString(),
       userId: 1
     });
+    setTitle("");
+    setContent("");
     onClose();
   };
 

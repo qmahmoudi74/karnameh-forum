@@ -1,11 +1,13 @@
 import axios from "axios";
 import {
-  AnswersResponse,
+  AnswerResponse,
+  AnswerType,
+  GetAnswerRequest,
   GetAnswersListRequest,
   GetQuestionRequest,
   QuestionResponse,
   QuestionType,
-  UserType
+  RateType
 } from "services/service-types";
 
 const http = axios.create({ baseURL: "http://localhost:3001" });
@@ -19,25 +21,28 @@ export async function getQuestion({ questionId }: GetQuestionRequest) {
   ).data;
 }
 
+export async function getAnswer({ answerId }: GetAnswerRequest) {
+  return (await http.get<AnswerResponse>(`/answers/${answerId}?_embed=rates`))
+    .data;
+}
+
+export async function getRate({ answerId }: GetAnswerRequest) {
+  return (await http.get<AnswerResponse>(`/rates/${answerId}`)).data;
+}
+
 export async function getQuestionsList() {
   return (
     await http.get<QuestionResponse[]>(
-      "/questions?_embed=answers&_expand=user&_sort=createdAt&order=asc"
+      "/questions?_embed=answers&_expand=user&_sort=createdAt&_order=desc"
     )
   ).data;
 }
 
 export async function getAnswersList({ questionId }: GetAnswersListRequest) {
   return (
-    await http.get<AnswersResponse[]>(
-      `/answers?questionId=${questionId}&_expand=question&_expand=user`
+    await http.get<AnswerResponse[]>(
+      `/answers?questionId=${questionId}&_expand=question&_expand=user&_embed=rates`
     )
-  ).data;
-}
-
-export async function getRandomUser() {
-  return (
-    await http.get<UserType>(`/users/${Math.floor(Math.random() * 5 + 1)}`)
   ).data;
 }
 
@@ -46,8 +51,10 @@ export async function postQuestion(req: QuestionType) {
   http.post("/questions", req);
 }
 
-export async function postAnswer(req: unknown) {}
+export async function postAnswer(req: AnswerType) {
+  http.post("/answers", req);
+}
 
-// PUT
-export async function putLike(req: unknown) {}
-export async function putDislike(req: unknown) {}
+export async function postRate(req: RateType) {
+  http.post("/rates", req);
+}

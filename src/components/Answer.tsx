@@ -1,9 +1,14 @@
-import { FC, useState } from "react";
+import { nanoid } from "@reduxjs/toolkit";
+import { useEffect } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { MdMood, MdMoodBad } from "react-icons/md";
-import { AnswersResponse } from "services/service-types";
+import { getAnswer, postRate } from "services";
+import { AnswerResponse } from "services/service-types";
 
 interface Props {
-  answer: AnswersResponse;
+  answer: AnswerResponse;
+  setUpdate: Dispatch<SetStateAction<string>>;
+  update: string;
 }
 
 const getDate = (createdAt: string) => {
@@ -25,85 +30,104 @@ const Answer: FC<Props> = ({
   answer: {
     content,
     createdAt,
-    title,
     id: answerId,
-    user: { avatar }
-  }
+    user: { avatar, id: userId, username },
+    rates
+  },
+  setUpdate,
+  update
 }) => {
-  return null;
-  // const [localLikes, setLocalLikes] = useState(
-  //   rates.filter(({ type }) => type === "like").length
-  // );
+  const [localLikes, setLocalLikes] = useState(0);
+  const [localDislikes, setLocalDislikes] = useState(0);
 
-  // const [localDislikes, setLocalDislikes] = useState(
-  //   rates.filter(({ type }) => type === "dislike").length
-  // );
+  useEffect(() => {
+    if (!update) return;
+    setLocalLikes(rates.filter(({ type }) => type === "like").length);
+    setLocalDislikes(rates.filter(({ type }) => type === "dislike").length);
+  }, [rates, update]);
 
-  // const { day, month, time, year } = getDate(createdAt);
+  const { day, month, time, year } = getDate(createdAt);
+  const canNotRate = !!rates.filter(({ userId: uId }) => uId === 1).length;
 
-  // const onLikeClick = async () => {
-  //   await putRate({ answerId, userId, type: "like" });
-  //   const answer = await getAnswerById({ answerId });
-  //   setLocalLikes(answer.rates.filter(({ type }) => type === "like").length);
-  // };
+  const onLikeClick = async () => {
+    await postRate({
+      answerId,
+      type: "like",
+      id: Math.floor(Math.random() * 50 + 11),
+      userId: 1
+    });
+    const answer = await getAnswer({ answerId });
+    setLocalLikes(answer.rates.filter(({ type }) => type === "like").length);
+    setUpdate(nanoid());
+  };
 
-  // const onDislikeClick = async () => {
-  //   await putRate({ answerId, userId, type: "like" });
-  //   const answer = await getAnswerById({ answerId });
-  //   setLocalLikes(answer.rates.filter(({ type }) => type === "dislike").length);
-  // };
+  const onDislikeClick = async () => {
+    await postRate({
+      answerId,
+      type: "dislike",
+      id: Math.floor(Math.random() * 50 + 11),
+      userId: 1
+    });
+    const answer = await getAnswer({ answerId });
+    setLocalDislikes(
+      answer.rates.filter(({ type }) => type === "dislike").length
+    );
+    setUpdate(nanoid());
+  };
 
-  // return (
-  //   <section className="shadow rounded-xl">
-  //     <header className="h-12 shadow px-4 py-1 bg-white rounded-xl flex gap-8 items-center">
-  //       <div className="flex items-center gap-4">
-  //         <img
-  //           loading="lazy"
-  //           src={avatar}
-  //           alt="avatar"
-  //           className="w-8 h-8 rounded-sm"
-  //         />
-  //         <h3 className="text-lg">{title}</h3>
-  //       </div>
+  return (
+    <section className="shadow rounded-xl">
+      <header className="h-12 shadow px-4 py-1 bg-white rounded-xl flex gap-8 items-center">
+        <div className="flex items-center gap-4">
+          <img
+            loading="lazy"
+            src={avatar}
+            alt="avatar"
+            className="w-8 h-8 rounded-sm"
+          />
+          <h3 className="text-lg">{username}</h3>
+        </div>
 
-  //       <time className="mr-auto text-xs">{`ساعت: ${time} | تاریخ: ${year}/${month}/${day}`}</time>
+        <time className="mr-auto text-xs">{`ساعت: ${time} | تاریخ: ${year}/${month}/${day}`}</time>
 
-  //       <div className="flex text-xs gap-4">
-  //         <div className="flex gap-1 items-center leading-none text-green-300">
-  //           <MdMood size={20} />
-  //           {localLikes}
-  //         </div>
+        <div className="flex text-xs gap-4">
+          <div className="flex gap-1 items-center leading-none text-green-300">
+            <MdMood size={20} />
+            {localLikes}
+          </div>
 
-  //         <div className="flex gap-1 items-center leading-none text-red-300">
-  //           <MdMoodBad size={20} />
-  //           {localDislikes}
-  //         </div>
-  //       </div>
-  //     </header>
+          <div className="flex gap-1 items-center leading-none text-red-300">
+            <MdMoodBad size={20} />
+            {localDislikes}
+          </div>
+        </div>
+      </header>
 
-  //     <div className="p-4 flex flex-col">
-  //       <p className="mb-4">{content}</p>
+      <div className="p-4 flex flex-col">
+        <p className="mb-4">{content}</p>
 
-  //       <div className="flex items-center gap-4 mr-auto">
-  //         <button
-  //           className="mr-auto border border-green-600 text-green-600"
-  //           onClick={onLikeClick}
-  //         >
-  //           <MdMood size={20} />
-  //           پاسخ خوب بود
-  //         </button>
+        <div className="flex items-center gap-4 mr-auto">
+          <button
+            className="mr-auto border border-green-600 text-green-600 disabled:border-gray-500 disabled:text-gray-500 disabled:cursor-not-allowed"
+            onClick={onLikeClick}
+            disabled={canNotRate}
+          >
+            <MdMood size={20} />
+            پاسخ خوب بود
+          </button>
 
-  //         <button
-  //           className="mr-auto border border-red-600 text-red-600"
-  //           onClick={onDislikeClick}
-  //         >
-  //           <MdMoodBad size={20} />
-  //           پاسخ خوب نبود
-  //         </button>
-  //       </div>
-  //     </div>
-  //   </section>
-  // );
+          <button
+            className="mr-auto border border-red-600 text-red-600 disabled:border-gray-500 disabled:text-gray-500 disabled:cursor-not-allowed"
+            onClick={onDislikeClick}
+            disabled={canNotRate}
+          >
+            <MdMoodBad size={20} />
+            پاسخ خوب نبود
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Answer;
