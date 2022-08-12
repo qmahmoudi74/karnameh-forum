@@ -1,5 +1,4 @@
 import "index.css";
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -11,11 +10,9 @@ if (!container) throw new Error("#root does not exist!");
 const root = createRoot(container);
 
 root.render(
-  <StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <Router />
-      </PersistGate>
-    </Provider>
-  </StrictMode>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <Router />
+    </PersistGate>
+  </Provider>
 );

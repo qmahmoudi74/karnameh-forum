@@ -1,48 +1,41 @@
-import { nanoid } from "@reduxjs/toolkit";
+import axios from "axios";
 import Answer from "components/Answer";
 import Question from "components/Quetsion";
-import { FC, useState } from "react";
-import { AnswerType } from "types";
+import { FC, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import getAnswaresList from "services/getAnswaresList";
+import getQuestionById from "services/getQuestionById";
+import { AnswerType, QuestionType } from "types";
 
 const QuestionIdPage: FC = () => {
-  const [answerList] = useState<AnswerType[]>(
-    new Array(2).fill(0).map(() => ({
-      content:
-        "در مرداد امسال، متاسفانه با جاری شدن سیل در شهرستان‌های نیریز و استهبان در استان فارس تعدادی از هموطنان عزیزمان که در بستر و حریم رودخانه رودبار در حال استراحت و گذران اوقات فراغت بودند، دچار غافلگیری فاجعه سیل شدند و تعدادی از آنان جان عزیزیشان را از دست دادند و تعدادی خودرو نیز نابود شد",
-      createdAt: new Date().toISOString(),
-      title: "تست کاربر",
-      user: { avatarSrc: "asdasd", userId: "asdasd", userName: "سعید هاشمی" },
-      answerId: nanoid(),
-      numberOfDislikes: 20,
-      numberOfLikes: 15,
-      questionId: nanoid()
-    }))
-  );
+  const { questionId: id } = useParams();
+  const [question, setQuestion] = useState<QuestionType>();
+  const [answerList, setAnswersList] = useState<AnswerType[]>([]);
+
+  const questionId = parseInt(id!);
+
+  useEffect(() => {
+    getQuestionById({ questionId }).then(setQuestion);
+    getAnswaresList({ questionId }).then(setAnswersList);
+  }, [questionId]);
 
   return (
     <div className="flex flex-col gap-16">
-      <Question
-        question={{
-          content:
-            "در مرداد امسال، متاسفانه با جاری شدن سیل در شهرستان‌های نیریز و استهبان در استان فارس تعدادی از هموطنان عزیزمان که در بستر و حریم رودخانه رودبار در حال استراحت و گذران اوقات فراغت بودند، دچار غافلگیری فاجعه سیل شدند و تعدادی از آنان جان عزیزیشان را از دست دادند و تعدادی خودرو نیز نابود شد",
-          createdAt: new Date().toISOString(),
-          numberOfAnswers: 20,
-          questionId: nanoid(),
-          title: "تست کاربر",
-          user: {
-            avatarSrc: "asdasd",
-            userId: "asdasd",
-            userName: "سعید هاشمی"
-          }
-        }}
-        hasDetailsButton={false}
-      />
+      {question ? (
+        <Question question={question} hasDetailsButton={false} />
+      ) : (
+        <div>...</div>
+      )}
 
       <div className="flex flex-col gap-8">
         <h2 className="font-bold">پاسخ‌ها</h2>
-        {answerList.map((answer) => (
-          <Answer key={answer.answerId} answer={answer} />
-        ))}
+        {answerList.length > 0 ? (
+          answerList.map((answer) => (
+            <Answer key={answer.answerId} answer={answer} />
+          ))
+        ) : (
+          <div>پاسخی وجود ندارد!</div>
+        )}
       </div>
 
       <div className="flex flex-col gap-8">

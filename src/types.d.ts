@@ -1,12 +1,11 @@
 export interface User {
-  userId: string;
-  userName: string;
+  userId: number;
   avatarSrc: string;
 }
 
 export interface QuestionType {
   user: User;
-  questionId: string;
+  questionId: number;
   title: string;
   content: string;
   createdAt: string;
@@ -15,8 +14,8 @@ export interface QuestionType {
 
 export interface AnswerType {
   user: User;
-  questionId: string;
-  answerId: string;
+  questionId: number;
+  answerId: number;
   title: string;
   content: string;
   createdAt: string;

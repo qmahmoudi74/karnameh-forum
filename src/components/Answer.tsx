@@ -35,7 +35,7 @@ const Answer: FC<Props> = ({
         <div className="flex items-center gap-4">
           <img
             src={user.avatarSrc}
-            alt={user.userName}
+            alt="avatar"
             className="w-8 h-8 rounded-sm"
           />
           <h3 className="text-lg">{title}</h3>

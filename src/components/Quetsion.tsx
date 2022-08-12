@@ -26,11 +26,7 @@ const Question: FC<Props> = ({
   return (
     <section className="shadow rounded-xl">
       <header className="h-12 shadow px-4 py-1 bg-white rounded-xl flex gap-4 items-center">
-        <img
-          src={user.avatarSrc}
-          alt={user.userName}
-          className="w-8 h-8 rounded-sm"
-        />
+        <img src={user.avatarSrc} alt="avatar" className="w-8 h-8 rounded-lg" />
         <h3 className="text-lg">{title}</h3>
         <time className="mr-auto text-xs">{`ساعت: ${time} | تاریخ: ${year}/${month}/${day}`}</time>
 
@@ -43,13 +39,15 @@ const Question: FC<Props> = ({
       <div className="p-4">
         <p className="mb-4">{content}</p>
 
-        {hasDetailsButton ? (
-          <Link to={`/questions/${questionId}`}>
-            <button className="mr-auto border border-green-600 text-green-600">
-              مشاهده جزئیات
-            </button>
-          </Link>
-        ) : null}
+        <div className="mr-auto w-max">
+          {hasDetailsButton ? (
+            <Link to={`/questions/${questionId}`}>
+              <button className="border border-green-600 text-green-600">
+                مشاهده جزئیات
+              </button>
+            </Link>
+          ) : null}
+        </div>
       </div>
     </section>
   );
