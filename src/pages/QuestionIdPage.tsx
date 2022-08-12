@@ -35,6 +35,7 @@ const QuestionIdPage: FC = () => {
             userName: "سعید هاشمی"
           }
         }}
+        hasDetailsButton={false}
       />
 
       <div className="flex flex-col gap-8">

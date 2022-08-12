@@ -5,10 +5,12 @@ import { QuestionType } from "types";
 
 interface Props {
   question: QuestionType;
+  hasDetailsButton?: boolean;
 }
 
 const Question: FC<Props> = ({
-  question: { content, createdAt, numberOfAnswers, questionId, title, user }
+  question: { content, createdAt, numberOfAnswers, questionId, title, user },
+  hasDetailsButton = true
 }) => {
   const datetime = new Date(createdAt);
 
@@ -41,11 +43,13 @@ const Question: FC<Props> = ({
       <div className="p-4">
         <p className="mb-4">{content}</p>
 
-        <Link to={`/questions/${questionId}`}>
-          <button className="mr-auto border border-green-600 text-green-600">
-            مشاهده جزئیات
-          </button>
-        </Link>
+        {hasDetailsButton ? (
+          <Link to={`/questions/${questionId}`}>
+            <button className="mr-auto border border-green-600 text-green-600">
+              مشاهده جزئیات
+            </button>
+          </Link>
+        ) : null}
       </div>
     </section>
   );

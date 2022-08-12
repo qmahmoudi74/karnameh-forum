@@ -38,6 +38,7 @@
   }
 
   :root {
+    direction: rtl;
     font-family: iranyekan, sans-serif;
   }
 
@@ -48,6 +49,6 @@
 
 @layer components {
   button {
-    @apply flex items-center gap-2 px-4 py-1.5 rounded-lg transition-colors active:translate-y-[1px];
+    @apply flex items-center gap-2 px-4 py-1.5 rounded-lg transition-colors active:translate-y-[1px] text-sm;
   }
 }

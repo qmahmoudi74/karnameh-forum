@@ -1,1 +1,25 @@
-{ "questions": [] }
+{
+  "users": [{ "userId": 1, "avatarSrc": "" }],
+  "questions": [
+    {
+      "user": { "userId": 1, "avatarSrc": "" },
+      "questionId": 1,
+      "title": "",
+      "content": "",
+      "createdAt": "",
+      "numberOfComments": 0
+    }
+  ],
+  "answers": [
+    {
+      "user": { "userId": 1, "avatarSrc": "" },
+      "questionId": "",
+      "answerId": "",
+      "title": "",
+      "content": "",
+      "createdAt": "",
+      "numberOfLikes": 0,
+      "numberOfDislikes": 0
+    }
+  ]
+}

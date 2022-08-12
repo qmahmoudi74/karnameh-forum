@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistCombineReducers, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import forumReducer from "store/slices/forumSlice";
+import questionModalReducer from "store/slices/questionModalSlice";
 
 const persistConfig = {
   key: "root",
@@ -9,7 +10,8 @@ const persistConfig = {
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
-  forum: forumReducer
+  forum: forumReducer,
+  questionModal: questionModalReducer
 });
 
 const store = configureStore({

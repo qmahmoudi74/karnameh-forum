@@ -3,10 +3,12 @@ const server = create();
 const appRouter = router("db.json");
 const middlewares = defaults();
 
-// Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);
 
-// Add custom routes before JSON Server router
+server.get("/questions", (_req, res) => {
+  res.jsonp(appRouter.get("/questions"));
+});
+
 server.get("/echo", (req, res) => {
   res.jsonp(req.query);
 });
