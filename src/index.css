@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* FONT FACES */
+  @font-face {
+    font-family: iranyekan;
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url(../public/fonts/iranyekan/iranyekanwebregularfanum.woff)
+      format("woff");
+  }
+
+  @font-face {
+    font-family: iranyekan;
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url(../public/fonts/iranyekan/iranyekanwebblackfanum.woff)
+      format("woff");
+  }
+
+  /* GLOBAL STYLES */
+  * {
+    /* @apply outline outline-1; */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply cursor-default;
+    @apply whitespace-nowrap;
+  }
+
+  :root {
+    font-family: iranyekan, sans-serif;
+  }
+
+  body {
+    @apply bg-gray-50;
+  }
+}
+
+@layer components {
+  button {
+    @apply flex items-center gap-2 px-4 py-1.5 rounded-lg transition-colors active:translate-y-[1px];
+  }
+}

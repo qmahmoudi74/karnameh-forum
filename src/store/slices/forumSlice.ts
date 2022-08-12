@@ -15,6 +15,5 @@ const forumSlice = createSlice({
   reducers: {}
 });
 
-export const {} = forumSlice.actions;
 export const selectforum = (state: RootState) => state.forum.value;
 export default forumSlice.reducer;
